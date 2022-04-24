@@ -1,0 +1,2 @@
+config MY_X86_64
+    bool

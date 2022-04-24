@@ -215,6 +215,7 @@
   'data': { 'model': 'CpuModelInfo' },
   'if': { 'any': [ 'TARGET_S390X',
                    'TARGET_I386',
+                   'TARGET_MY_I386',
                    'TARGET_ARM' ] } }
 
 ##
@@ -256,6 +257,7 @@
   'returns': 'CpuModelExpansionInfo',
   'if': { 'any': [ 'TARGET_S390X',
                    'TARGET_I386',
+                   'TARGET_MY_I386',
                    'TARGET_ARM' ] } }
 
 ##
@@ -323,6 +325,7 @@
   'if': { 'any': [ 'TARGET_PPC',
                    'TARGET_ARM',
                    'TARGET_I386',
+                   'TARGET_MY_I386',
                    'TARGET_S390X',
                    'TARGET_MIPS' ] } }
 
@@ -339,5 +342,6 @@
   'if': { 'any': [ 'TARGET_PPC',
                    'TARGET_ARM',
                    'TARGET_I386',
+                   'TARGET_MY_I386',
                    'TARGET_S390X',
                    'TARGET_MIPS' ] } }

@@ -48,6 +48,10 @@
 #include "qapi/qapi-commands-misc-target.h"
 #include "hw/i386/apic.h"
 #endif
+#ifdef TARGET_MY_I386
+#include "qapi/qapi-commands-misc-target.h"
+#include "hw/my_i386/apic.h"
+#endif
 
 //#define DEBUG_CMOS
 //#define DEBUG_COALESCED
@@ -143,6 +147,23 @@ static void rtc_coalesced_timer(void *opaque)
 
     rtc_coalesced_timer_update(s);
 }
+#elif TARGET_MY_I386
+void qmp_rtc_reset_reinjection(Error **errp)
+{
+    RTCState *s;
+
+    QLIST_FOREACH(s, &rtc_devices, link) {
+        s->irq_coalesced = 0;
+    }
+}
+
+static bool rtc_policy_slew_deliver_irq(RTCState *s)
+{
+    apic_reset_irq_delivered();
+    qemu_irq_raise(s->irq);
+    return apic_get_irq_delivered();
+}
+
 #else
 static bool rtc_policy_slew_deliver_irq(RTCState *s)
 {

@@ -19,7 +19,8 @@
 #
 ##
 { 'command': 'rtc-reset-reinjection',
-  'if': 'TARGET_I386' }
+  'if': { 'any': [ 'TARGET_I386',
+    'TARGET_MY_I386'] } }
 
 
 ##
@@ -46,7 +47,9 @@
 { 'enum': 'SevState',
   'data': ['uninit', 'launch-update', 'launch-secret', 'running',
            'send-update', 'receive-update' ],
-  'if': 'TARGET_I386' }
+  'if': { 'any': [ 'TARGET_I386',
+    'TARGET_MY_I386'] }
+  }
 
 ##
 # @SevInfo:
@@ -78,7 +81,8 @@
               'state' : 'SevState',
               'handle' : 'uint32'
             },
-  'if': 'TARGET_I386'
+  'if': { 'any': [ 'TARGET_I386',
+    'TARGET_MY_I386'] }
 }
 
 ##
@@ -99,7 +103,9 @@
 #
 ##
 { 'command': 'query-sev', 'returns': 'SevInfo',
-  'if': 'TARGET_I386' }
+  'if': { 'any': [ 'TARGET_I386',
+    'TARGET_MY_I386'] }
+  }
 
 
 ##
@@ -113,7 +119,9 @@
 #
 ##
 { 'struct': 'SevLaunchMeasureInfo', 'data': {'data': 'str'},
-  'if': 'TARGET_I386' }
+  'if': { 'any': [ 'TARGET_I386',
+  'TARGET_MY_I386'] }
+}
 
 ##
 # @query-sev-launch-measure:
@@ -131,7 +139,9 @@
 #
 ##
 { 'command': 'query-sev-launch-measure', 'returns': 'SevLaunchMeasureInfo',
-  'if': 'TARGET_I386' }
+  'if': { 'any': [ 'TARGET_I386',
+    'TARGET_MY_I386'] }
+}
 
 
 ##
@@ -159,7 +169,9 @@
             'cpu0-id': 'str',
             'cbitpos': 'int',
             'reduced-phys-bits': 'int'},
-  'if': 'TARGET_I386' }
+  'if': { 'any': [ 'TARGET_I386',
+              'TARGET_MY_I386'] }
+  }
 
 ##
 # @query-sev-capabilities:
@@ -180,7 +192,8 @@
 #
 ##
 { 'command': 'query-sev-capabilities', 'returns': 'SevCapability',
-  'if': 'TARGET_I386' }
+  'if': { 'any': [ 'TARGET_I386',
+              'TARGET_MY_I386'] } }
 
 ##
 # @sev-inject-launch-secret:
@@ -198,7 +211,8 @@
 ##
 { 'command': 'sev-inject-launch-secret',
   'data': { 'packet-header': 'str', 'secret': 'str', '*gpa': 'uint64' },
-  'if': 'TARGET_I386' }
+  'if': { 'any': [ 'TARGET_I386',
+              'TARGET_MY_I386'] } }
 
 ##
 # @SevAttestationReport:
@@ -213,7 +227,8 @@
 ##
 { 'struct': 'SevAttestationReport',
   'data': { 'data': 'str'},
-  'if': 'TARGET_I386' }
+  'if': { 'any': [ 'TARGET_I386',
+              'TARGET_MY_I386'] } }
 
 ##
 # @query-sev-attestation-report:
@@ -238,7 +253,8 @@
 { 'command': 'query-sev-attestation-report',
   'data': { 'mnonce': 'str' },
   'returns': 'SevAttestationReport',
-  'if': 'TARGET_I386' }
+  'if': { 'any': [ 'TARGET_I386',
+              'TARGET_MY_I386'] } }
 
 ##
 # @dump-skeys:
@@ -354,7 +370,8 @@
             'section-size': { 'type': 'uint64',
                     'features': [ 'deprecated' ] },
             'sections': ['SGXEPCSection']},
-   'if': 'TARGET_I386' }
+   'if': { 'any': [ 'TARGET_I386',
+              'TARGET_MY_I386'] } }
 
 ##
 # @query-sgx:
@@ -374,7 +391,8 @@
 #                  {"node": 1, "size": 29360128}]} }
 #
 ##
-{ 'command': 'query-sgx', 'returns': 'SGXInfo', 'if': 'TARGET_I386' }
+{ 'command': 'query-sgx', 'returns': 'SGXInfo', 'if': { 'any': [ 'TARGET_I386',
+              'TARGET_MY_I386'] } }
 
 ##
 # @query-sgx-capabilities:
@@ -394,4 +412,5 @@
 #                  {"node": 1, "size": 29360128}]} }
 #
 ##
-{ 'command': 'query-sgx-capabilities', 'returns': 'SGXInfo', 'if': 'TARGET_I386' }
+{ 'command': 'query-sgx-capabilities', 'returns': 'SGXInfo', 'if': { 'any': [ 'TARGET_I386',
+              'TARGET_MY_I386'] } }
