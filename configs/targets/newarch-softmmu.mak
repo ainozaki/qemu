@@ -1,0 +1,4 @@
+TARGET_ARCH=newarch
+TARGET_SUPPORTS_MTTCG=y
+TARGET_NEED_FDT=y
+TARGET_XML_FILES= gdb-xml/newarch.xml
